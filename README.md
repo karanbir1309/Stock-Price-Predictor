@@ -10,52 +10,58 @@ The Stock Price Predictor model is a deep learning-based time series forecasting
 
 **Key Features**
 
-Data Source and Scope:
+    Data Source and Scope:
 
-Utilizes two years of historical daily data for ITC stock (ITC.NS), including Open, High, Low, Close, and Volume features.
-
-Feature Engineering:
-
-Computes the daily log return as the primary target variable.
-
-Input features include standardized values of Open, High, Low, Close, Volume, and the previous day's log return.
+    Utilizes two years of historical daily data for ITC stock (ITC.NS), including Open, High, Low, Close, and Volume features.
+    
+    Feature Engineering:
+    
+    Computes the daily log return as the primary target variable.
+    
+    Input features include standardized values of Open, High, Low, Close, Volume, and the previous day's log return.
+    
+    Data Preprocessing:
+    
+    Standardizes all features using StandardScaler for improved neural network performance.
+    
+    Constructs input sequences of 60 consecutive days for each prediction, enabling the model to capture long-term temporal patterns.
 
 **Data Preprocessing:**
 
-Standardizes all features using StandardScaler for improved neural network performance.
-
-Constructs input sequences of 60 consecutive days for each prediction, enabling the model to capture long-term temporal patterns.
+    Standardizes all features using StandardScaler for improved neural network performance.
+    
+    Constructs input sequences of 60 consecutive days for each prediction, enabling the model to capture long-term temporal patterns.
 
 **Model Architecture:**
 
-Type: Sequential LSTM (Long Short-Term Memory) neural network.
+    Type: Sequential LSTM (Long Short-Term Memory) neural network.
 
 **Layers:**
 
-First LSTM layer with 50 units, returning sequences.
+    First LSTM layer with 50 units, returning sequences.
+    
+    Dropout layer (rate 0.2) for regularization.
+    
+    Second LSTM layer with 50 units.
+    
+    Second Dropout layer (rate 0.2).
 
-Dropout layer (rate 0.2) for regularization.
-
-Second LSTM layer with 50 units.
-
-Second Dropout layer (rate 0.2).
-
-Dense output layer with 1 unit for regression.
+    Dense output layer with 1 unit for regression.
 
 **Training and Validation:**
 
-Train/Test Split: 80% training, 20% testing, maintaining chronological order (no shuffling).
-
-Optimizer: Adam.
-
-Loss Function: Mean Squared Error (MSE).
-
-Epochs: 10.
-
-Batch Size: 32.
+    Train/Test Split: 80% training, 20% testing, maintaining chronological order (no shuffling).
+    
+    Optimizer: Adam.
+    
+    Loss Function: Mean Squared Error (MSE).
+    
+    Epochs: 10.
+    
+    Batch Size: 32.
 
 **Prediction and Evaluation:**
 
-Predicts the next day's log return on the test set.
-
-Performance Metric: Mean Absolute Error (MAE) on the test set is 0.009357
+    Predicts the next day's log return on the test set.
+    
+    Performance Metric: Mean Absolute Error (MAE) on the test set is 0.009357
